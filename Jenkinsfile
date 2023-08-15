@@ -19,14 +19,12 @@ pipeline{
             parallel {
                 stage('Branch A') {
                     steps {
-                        echo "On Branch A, Build by Jenkins:"${IS_JENKINS}
-                        echo "Version:"${APP_VERSION}
+                        sh './gradlew assembleDebug'
                     }
                 }
                 stage('Branch B') {
                     steps {
-                         echo "On Branch A, Build by Jenkins: false"
-                         echo "Version: 2.0.0"
+                        sh './gradlew assembleDebug'
                     }
                 }
             }
