@@ -1,5 +1,11 @@
 pipeline{
     agent any
+
+    environment {
+        IS_JENKINS = 'true'
+        APP_VERSION = '1.0.0'
+    }
+
     stages {
         stage('Build'){
              steps {
@@ -7,7 +13,10 @@ pipeline{
                 sh './gradlew assembleDebug'
              }
         }
-
+        stage('UnitTest'){
+             steps {
+                sh './gradlew test'
+             }
+        }
     }
-
 }
